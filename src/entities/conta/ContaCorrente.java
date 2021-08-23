@@ -15,14 +15,6 @@ public class ContaCorrente extends Conta {
 				cliente);
 	}
 
-
-
-
-	// CONSTRUTOR PARA TESTE
-	public ContaCorrente(Double saldo, Date dataAbertura) {
-		super(saldo, dataAbertura);
-	}
-
 	public Integer getQtdSaque() {
 		return qtdSaque;
 	}
@@ -36,7 +28,7 @@ public class ContaCorrente extends Conta {
 	public void saque(double saque) {
 		if (qtdSaque < 4) {
 			if ((getSaldo() - saque) >= 0) {
-				setSaldo(getSaldo() - saque);
+				this.saldo -= saque;
 				qtdSaque++;
 			} else {
 				System.out.println("Saldo insulficiente");
@@ -44,7 +36,7 @@ public class ContaCorrente extends Conta {
 		} else {
 			System.out.println("Será feito o saque, porém com uma taxa adicional");
 			if ((getSaldo() - saque) >= 0) {
-				setSaldo(getSaldo() - saque - 4.0);
+				this.saldo -= saque - 4.0;
 				System.out.println(getSaldo());
 			} else {
 				System.out.println("Saldo insulficiente");
@@ -55,7 +47,7 @@ public class ContaCorrente extends Conta {
 	// SOBRESCRITA DO MÉTODO DEPOSITO NA CLASSE CONTA CORRENTE
 	@Override
 	public void deposito(double deposito) {
-		setSaldo(getSaldo() + deposito);
+		this.saldo += deposito;
 	}
 
 	// SOBRECRITA DO MÉTODO TRANSFERENCIA NA CLASSE CONTA CORRENTE
@@ -63,9 +55,9 @@ public class ContaCorrente extends Conta {
 	public void transferencia(Conta conta, double valor) {
 		if (getQtdTransferencia() < 4) {
 			if (getSaldo() >= valor) {
-				setSaldo(getSaldo() - valor);
+				this.saldo -= valor;
 				conta.deposito(valor);
-				setQtdTransferencia(getQtdTransferencia() + 1);
+				this.qtdTransferencia += 1;
 			} else {
 				System.out.println("Você está tentando sacar um valor maior que você possui no saldo");
 			}
@@ -84,7 +76,7 @@ public class ContaCorrente extends Conta {
 
 		if (diaCobrança == diaTarifa) {
 			System.out.printf("Seu saldo era de %.2f\n", getSaldo());
-			setSaldo(getSaldo() - tarifasBancarias);
+			this.saldo -= tarifasBancarias;
 			System.out.printf("Foi cobrado o valor de 13,90 do seu saldo, e agora seu saldo é: %.2f\n", getSaldo());
 		} else {
 			System.out.println("Ainda não é o dia para cobrar sua tarifa");

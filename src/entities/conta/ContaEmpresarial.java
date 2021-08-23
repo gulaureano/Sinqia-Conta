@@ -14,7 +14,7 @@ public class ContaEmpresarial extends Conta {
 	@Override
 	public void saque(double saque) {
 		if (((getSaldo() - saque) >= 0)) {
-			setSaldo(getSaldo() - saque);
+			this.saldo -= saque;
 		} else {
 			System.out.println("Seu saldo é insulficiente para esta operação");
 		}
@@ -24,13 +24,13 @@ public class ContaEmpresarial extends Conta {
 	// MÉTODO PARA DEPÓSITO SIMPLES
 	@Override
 	public void deposito(double deposito) {
-		setSaldo(getSaldo() + deposito);
+		this.saldo += deposito;
 	}
 
 	@Override
 	public void transferencia(Conta conta, double valor) {
 		if (getSaldo() >= valor) {
-			setSaldo(getSaldo() - valor);
+			this.saldo -= valor;
 			conta.deposito(valor);
 		} else {
 			System.out.println("Você está tentando sacar um valor maior que você possui no saldo");

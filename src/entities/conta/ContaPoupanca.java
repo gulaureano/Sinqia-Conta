@@ -6,19 +6,14 @@ import java.util.Date;
 
 import entities.cliente.Cliente;
 
-public class ContaPoupança extends Conta {
+public class ContaPoupanca extends Conta {
 
 	private Double valorizacaoMensal;
 
 	Calendar cal = Calendar.getInstance();
 	Calendar cal2 = Calendar.getInstance();
 
-	// CONSTRUTOR PARA TESTES, APAGAR DEPOIS
-	public ContaPoupança(Double saldo, Date aberturaConta) {
-		super(saldo, aberturaConta);
-	}
-
-	public ContaPoupança(String nomeBanco, Integer codigoIdentificadorBanco, Integer numeroConta, Integer numeroAgencia,
+	public ContaPoupanca(String nomeBanco, Integer codigoIdentificadorBanco, Integer numeroConta, Integer numeroAgencia,
 			Double saldo, Date dataAbertura, Cliente cliente) {
 		super(nomeBanco, codigoIdentificadorBanco, numeroConta, numeroAgencia, saldo, dataAbertura,	cliente);
 	}
@@ -44,7 +39,7 @@ public class ContaPoupança extends Conta {
 		if (diaValorizacao == hoje) {
 			System.out.printf("Seu saldo é: %.2f\n", getSaldo());
 			resultado = getSaldo() * porcentagem;
-			setSaldo(getSaldo() + resultado);
+			this.saldo += resultado;
 			System.out.printf("Agora seu saldo devido a valorização é: %.2f\n", getSaldo());
 		} else {
 			System.out.println("Não ocorreu juros no seu saldo");
@@ -59,7 +54,7 @@ public class ContaPoupança extends Conta {
 
 		if (resultado >= 29) {
 			if (!((getSaldo() - saque) < 0)) {
-				setSaldo(getSaldo() - saque);
+				this.saldo -= saque;
 			} else {
 				System.out.println("Seu saldo é insulficiente para esta operação");
 			}
@@ -70,6 +65,6 @@ public class ContaPoupança extends Conta {
 
 	@Override
 	public void deposito(double deposito) {
-		setSaldo(getSaldo() + deposito);
+		this.saldo += deposito;
 	}
 }

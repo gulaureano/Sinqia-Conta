@@ -13,11 +13,11 @@ public abstract class Conta {
 	private Integer codigoIdentificadorBanco;
 	private Integer numeroConta;
 	private Integer numeroAgencia;
-	private Double saldo;
+	protected Double saldo;
 	private Date dataAbertura;
 	private Date dataFechamento;
 	private String motivoFechamento;
-	private Integer qtdTransferencia = 0;
+	protected Integer qtdTransferencia = 0;
 	
 	private Cliente cliente;
 
@@ -33,8 +33,7 @@ public abstract class Conta {
 	}
 
 	public Conta(String nomeBanco, Integer codigoIdentificadorBanco, Integer numeroConta, Integer numeroAgencia,
-			Double saldo, Date dataAbertura,	Cliente cliente) {
-		super();
+			Double saldo, Date dataAbertura, Cliente cliente) {
 		this.nomeBanco = nomeBanco;
 		this.codigoIdentificadorBanco = codigoIdentificadorBanco;
 		this.numeroConta = numeroConta;
@@ -77,19 +76,11 @@ public abstract class Conta {
 	}
 
 	public Double getSaldo() {
-		return saldo;
-	}
-
-	public void setSaldo(Double saldo) {
-		this.saldo = saldo;
+		return this.saldo;
 	}
 
 	public Date getDataAbertura() {
 		return dataAbertura;
-	}
-
-	public void setDataAbertura(Date dataAbertura) {
-		this.dataAbertura = dataAbertura;
 	}
 
 	public Date getDataFechamento() {
@@ -118,10 +109,6 @@ public abstract class Conta {
 
 	public Integer getQtdTransferencia() {
 		return qtdTransferencia;
-	}
-
-	public void setQtdTransferencia(Integer qtdTransferencia) {
-		this.qtdTransferencia = qtdTransferencia;
 	}
 
 	// MÉTODO ABSTRATO DE SAQUE
@@ -153,7 +140,7 @@ public abstract class Conta {
 
 	public void transferencia(Conta conta, Double valor) {
 		if (getSaldo() >= valor) {
-			setSaldo(getSaldo() - valor);
+			this.saldo -= valor;
 			conta.deposito(valor);
 		} else {
 			System.out.println("Você está tentando sacar um valor maior que você possui no saldo");
