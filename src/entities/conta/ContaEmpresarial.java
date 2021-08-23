@@ -1,14 +1,30 @@
 package entities.conta;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import entities.cliente.Cliente;
 
 public class ContaEmpresarial extends Conta {
+	
+	private String nomeEmpresa;
+	
 	public ContaEmpresarial(String nomeBanco, Integer codigoIdentificadorBanco, Integer numeroConta,
-			Integer numeroAgencia, Double saldo, Date dataAbertura, Cliente cliente) {
+			Integer numeroAgencia, Double saldo, LocalDate dataAbertura, Cliente cliente, String nomeEmpresa) {
 		super(nomeBanco, codigoIdentificadorBanco, numeroConta, numeroAgencia, saldo, dataAbertura, cliente);
+		this.nomeEmpresa = nomeEmpresa;
 	}
+
+	public String getNomeEmpresa() {
+		return nomeEmpresa;
+	}
+
+
+
+	public void setNomeEmpresa(String nomeEmpresa) {
+		this.nomeEmpresa = nomeEmpresa;
+	}
+
+
 
 	// MÉTODO PARA SAQUE SIMPLES
 	@Override
@@ -27,13 +43,16 @@ public class ContaEmpresarial extends Conta {
 		this.saldo += deposito;
 	}
 
-	@Override
-	public void transferencia(Conta conta, double valor) {
-		if (getSaldo() >= valor) {
-			this.saldo -= valor;
-			conta.deposito(valor);
-		} else {
-			System.out.println("Você está tentando sacar um valor maior que você possui no saldo");
-		}
+	
+	public void transferencia(Conta conta, Double valor) {
+		super.transferencia(conta, valor);
 	}
+	
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append("Nome da Empresa: " + getNomeEmpresa() + "\n");
+		return sb.toString();
+	}
+		
 }

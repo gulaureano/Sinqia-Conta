@@ -1,32 +1,46 @@
 package entities.conta;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
 import entities.cliente.Cliente;
 
 public class ContaCorrente extends Conta {
-	final Double tarifasBancarias = 13.9;
-	private Integer qtdSaque;
+	static Double tarifasBancarias = 13.9;
+	private Integer qtdMaximaSaque;
+	private Integer qtdMaximaTransferencia;
+	private int qtdSaque = 0;
+	private int qtdTransferencia = 0;
 
 	public ContaCorrente(String nomeBanco, Integer codigoIdentificadorBanco, Integer numeroConta, Integer numeroAgencia,
-			Double saldo, Date dataAbertura, Cliente cliente) {
+			Double saldo, LocalDate dataAbertura, Cliente cliente, Integer qtdMaximaSaque, Integer qtdMaximaTransferencia) {
 		super(nomeBanco, codigoIdentificadorBanco, numeroConta, numeroAgencia, saldo, dataAbertura,
 				cliente);
+		this.qtdMaximaSaque = qtdMaximaSaque;
+		this.qtdMaximaTransferencia = qtdMaximaTransferencia;
 	}
 
-	public Integer getQtdSaque() {
-		return qtdSaque;
+	public Integer getQtdMaximaTransferencia() {
+		return qtdMaximaTransferencia;
 	}
 
-	public void setQtdSaque(Integer qtdSaque) {
-		this.qtdSaque = qtdSaque;
+	public void setQtdMaximaTransferencia(Integer qtdMaximaTransferencia) {
+		this.qtdMaximaTransferencia = qtdMaximaTransferencia;
+	}
+
+	public Integer getQtdMaximaSaque() {
+		return qtdMaximaSaque;
+	}
+
+	public void setQtdSaque(Integer qtdMaximaSaque) {
+		this.qtdMaximaSaque = qtdMaximaSaque;
 	}
 
 	// SOBRESCRITA DO MÉTODO SAQUE NA CLASSE CONTA CORRENTE
 	@Override
 	public void saque(double saque) {
-		if (qtdSaque < 4) {
+		if (qtdSaque <= getQtdMaximaSaque()) {
 			if ((getSaldo() - saque) >= 0) {
 				this.saldo -= saque;
 				qtdSaque++;
@@ -37,6 +51,7 @@ public class ContaCorrente extends Conta {
 			System.out.println("Será feito o saque, porém com uma taxa adicional");
 			if ((getSaldo() - saque) >= 0) {
 				this.saldo -= saque - 4.0;
+				qtdSaque++;
 				System.out.println(getSaldo());
 			} else {
 				System.out.println("Saldo insulficiente");
@@ -50,20 +65,16 @@ public class ContaCorrente extends Conta {
 		this.saldo += deposito;
 	}
 
-	// SOBRECRITA DO MÉTODO TRANSFERENCIA NA CLASSE CONTA CORRENTE
-	@Override
-	public void transferencia(Conta conta, double valor) {
-		if (getQtdTransferencia() < 4) {
-			if (getSaldo() >= valor) {
-				this.saldo -= valor;
-				conta.deposito(valor);
-				this.qtdTransferencia += 1;
-			} else {
-				System.out.println("Você está tentando sacar um valor maior que você possui no saldo");
-			}
-		} else {
-			System.out.println("Você chegou a um limite de saque esse mês");
+	
+	public void transferenciaContaCorrente(Conta conta, double valor) {
+		if (qtdTransferencia >= getQtdMaximaTransferencia()){
+			System.out.println("Você atingiu a quantidade máxima de saques permitida");
 		}
+		else {
+			super.transferencia(conta, valor);
+			qtdTransferencia++;
+		}
+		
 	}
 
 	// MÉTODO QUE COBRA A TARIFA MENSAL TODO DIA 05, DESCONTANDO O VALOR DA
@@ -72,9 +83,8 @@ public class ContaCorrente extends Conta {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		int diaTarifa = 5;
-		int diaCobrança = cal.get(Calendar.DAY_OF_MONTH);
-
-		if (diaCobrança == diaTarifa) {
+		
+		if (cal.get(Calendar.DAY_OF_MONTH) == diaTarifa) {
 			System.out.printf("Seu saldo era de %.2f\n", getSaldo());
 			this.saldo -= tarifasBancarias;
 			System.out.printf("Foi cobrado o valor de 13,90 do seu saldo, e agora seu saldo é: %.2f\n", getSaldo());

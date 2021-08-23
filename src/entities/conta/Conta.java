@@ -1,39 +1,25 @@
 package entities.conta;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 import entities.cliente.Cliente;
 
 public abstract class Conta {
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	private String nomeBanco;
 	private Integer codigoIdentificadorBanco;
 	private Integer numeroConta;
 	private Integer numeroAgencia;
 	protected Double saldo;
-	private Date dataAbertura;
-	private Date dataFechamento;
+	private LocalDate dataAbertura;
+	private LocalDate dataFechamento;
 	private String motivoFechamento;
-	protected Integer qtdTransferencia = 0;
 	
 	private Cliente cliente;
 
-	// APAGAR MÉTODO APÓS TESTE NA CLASSE CONTA CORRENTE
-	public Conta(Double saldo) {
-		this.saldo = saldo;
-	}
-
-	// APAGAR MÉTODO APÓS TESTES NA CLASSE CONTA POUPANÇA
-	public Conta(Double saldo, Date aberturaConta) {
-		this.saldo = saldo;
-		this.dataAbertura = aberturaConta;
-	}
-
 	public Conta(String nomeBanco, Integer codigoIdentificadorBanco, Integer numeroConta, Integer numeroAgencia,
-			Double saldo, Date dataAbertura, Cliente cliente) {
+			Double saldo, LocalDate dataAbertura, Cliente cliente) {
 		this.nomeBanco = nomeBanco;
 		this.codigoIdentificadorBanco = codigoIdentificadorBanco;
 		this.numeroConta = numeroConta;
@@ -79,15 +65,15 @@ public abstract class Conta {
 		return this.saldo;
 	}
 
-	public Date getDataAbertura() {
+	public LocalDate getDataAbertura() {
 		return dataAbertura;
 	}
 
-	public Date getDataFechamento() {
+	public LocalDate getDataFechamento() {
 		return dataFechamento;
 	}
 
-	public void setDataFechamento(Date dataFechamento) {
+	public void setDataFechamento(LocalDate dataFechamento) {
 		this.dataFechamento = dataFechamento;
 	}
 
@@ -107,36 +93,11 @@ public abstract class Conta {
 		this.cliente = cliente;
 	}
 
-	public Integer getQtdTransferencia() {
-		return qtdTransferencia;
-	}
-
 	// MÉTODO ABSTRATO DE SAQUE
 	public abstract void saque(double saque);
 
 	// MÉTODO ABSTRATO DE DEPOSITO
 	public abstract void deposito(double deposito);
-
-	// MÉTODO DE TRANSFERENCIA
-	public void transferencia(Conta conta, double valor) {
-		if (saldo > 0) {
-			saldo -= valor;
-
-			conta.deposito(valor);
-		}
-	}
-	
-	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append(cliente.toString());
-		sb.append("Nome do Banco: " + getNomeBanco() + "\n");
-		sb.append("Código Identificador: " + getCodigoIdentificadorBanco() + "\n");
-		sb.append("Número da Conta: " + getNumeroConta() + "\n");
-		sb.append("Número da Âgencia: " + getNumeroAgencia() + "\n");
-		sb.append("Saldo Atual: " + String.format("%.2f", getSaldo()) + "\n");
-		sb.append("Data de Abertura: " + sdf.format(getDataAbertura()) + "\n");
-		return sb.toString();
-	}
 
 	public void transferencia(Conta conta, Double valor) {
 		if (getSaldo() >= valor) {
@@ -146,13 +107,17 @@ public abstract class Conta {
 			System.out.println("Você está tentando sacar um valor maior que você possui no saldo");
 		}
 	}
-
 	
-	/*this.nomeBanco = nomeBanco;
-		this.codigoIdentificadorBanco = codigoIdentificadorBanco;
-		this.numeroConta = numeroConta;
-		this.numeroAgencia = numeroAgencia;
-		this.saldo = saldo;
-		this.dataAbertura = dataAbertura;
-		this.cliente = cliente;*/
+
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(cliente.toString());
+		sb.append("Nome do Banco: " + getNomeBanco() + "\n");
+		sb.append("Código Identificador: " + getCodigoIdentificadorBanco() + "\n");
+		sb.append("Número da Conta: " + getNumeroConta() + "\n");
+		sb.append("Número da Âgencia: " + getNumeroAgencia() + "\n");
+		sb.append("Saldo Atual: " + String.format("%.2f", getSaldo()) + "\n");
+		sb.append("Data de Abertura: " + getDataAbertura() + "\n");
+		return sb.toString();
+	}
 }

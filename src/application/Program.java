@@ -1,8 +1,6 @@
 package application;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Locale;
 
 import entities.cliente.Cliente;
@@ -13,31 +11,49 @@ import entities.enums.TipoCliente;
 
 public class Program {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date d1 = sdf.parse("05/06/2021");
 		
 		//INSTANCIADOS TRÊS EXEMPLOS DE CLIENTES
 		Cliente cliente1 = new Cliente("Gustavo", 1001, 778.0, TipoCliente.PESSOA_FISICA);
 		Cliente cliente2 = new Cliente("Geovane", 1002, 550.0, TipoCliente.PESSOA_FISICA);
-		Cliente cliente3 = new Cliente("Coca-Cola", 123456789, 780.0, TipoCliente.PESSOA_JURIDICA);
+		Cliente cliente3 = new Cliente("Jose Vivaldo", 123456789, 780.0, TipoCliente.PESSOA_JURIDICA);
 		
 		//INSTANCIADOS TRÊS TIPOS DE CONTA E EM CADA UMA COLOCANDO UM CLIENTE
-		ContaPoupanca contaPoupança = new ContaPoupanca("Itau", 40, 1001, 85, 1000.0, d1, cliente1);
-		ContaCorrente contaCorrente = new ContaCorrente("Bradesco", 67, 1002, 94, 1000.0, new Date(), cliente2);
-		ContaEmpresarial contaEmpresarial = new ContaEmpresarial("NuBank", 38, 1003, 77, 150000.0, new Date(), cliente3);
+		ContaPoupanca contaPoupanca = new ContaPoupanca("Itau", 89, 1001, 2, 1000.0, LocalDate.parse("2021-04-04"), cliente1, 0.5, 3, 4);
+		ContaCorrente contaCorrente = new ContaCorrente("Itau", 89, 2001, 7, 2000.0, LocalDate.parse("2021-05-05"), cliente2, 5, 5);
+		ContaEmpresarial contaEmpresarial = new ContaEmpresarial("Nubank", 43, 3467, 7, 10000.0, LocalDate.parse("2018-07-20"), cliente3, "Coca-Cola");
 		
 		//TESTANDO MÉTODOS DO TIPO POUPANÇA
-		contaPoupança.saque(100.0);
-		System.out.println(contaPoupança);
-		contaPoupança.deposito(100.0);
-		System.out.println(contaPoupança);
-		contaPoupança.transferencia(contaCorrente, 100.0);
-		System.out.println(contaPoupança);
+		contaPoupanca.saque(100.0);
+		System.out.println(contaPoupanca);
+		contaPoupanca.deposito(100.0);
+		System.out.println(contaPoupanca);
+		contaPoupanca.transferencia(contaCorrente, 100.0);
+		System.out.println(contaPoupanca);
+		contaPoupanca.valorizacaoMensal();
+		System.out.println("__________________________________________");
+		
+		//TESTANDO MÉTODOS DO TIPO CORRENTE
+		contaCorrente.deposito(100.0);
 		System.out.println(contaCorrente);
-		System.out.println();
-		contaPoupança.valorizacaoMensal();
+		contaCorrente.saque(100.0);
+		System.out.println(contaCorrente);
+		contaCorrente.tarifaBancaria();
+		System.out.println(contaCorrente);
+		contaCorrente.transferenciaContaCorrente(contaEmpresarial, 100.0);
+		System.out.println(contaCorrente);
+		System.out.println("___________________________________________");
+		
+		//TESTANDO MÉTODOS DO TIPO EMPRESARIAL
+		contaEmpresarial.deposito(5000.0);
+		System.out.println(contaEmpresarial);
+		contaEmpresarial.saque(5000.0);
+		System.out.println(contaEmpresarial);
+		
+		
+		
+		
 		
 		
 		//TESTANDO MÉTODO DO TIPO CORRENTE
