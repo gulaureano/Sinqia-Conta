@@ -3,7 +3,7 @@ package entities.cliente;
 import entities.enums.TipoCliente;
 
 public class Cliente {
-	
+
 	private String nomeCliente;
 	private Integer numeroDocumentoCliente;
 	private Double scoreCliente;
@@ -39,22 +39,22 @@ public class Cliente {
 	public void setScoreCliente(Double scoreCliente) {
 		this.scoreCliente = scoreCliente;
 	}
-	
+
 	public TipoCliente getTipoCliente() {
 		return tipoCliente;
 	}
-	
+
 	public void setTipoCliente(TipoCliente tipoCliente) {
 		this.tipoCliente = tipoCliente;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Nome do Cliente: " + nomeCliente + "\n");
 		sb.append("CPF/CNPJ: " + numeroDocumentoCliente + "\n");
 		sb.append("Score do Cliente: " + String.format("%.2f", scoreCliente) + "\n");
 		sb.append("Tipo do Cliente: " + getTipoCliente() + "\n");
 		return sb.toString();
-		
+
 	}
 }

@@ -2,7 +2,6 @@ package entities.conta;
 
 import java.time.LocalDate;
 
-
 import entities.cliente.Cliente;
 
 public abstract class Conta {
@@ -15,7 +14,7 @@ public abstract class Conta {
 	private LocalDate dataAbertura;
 	private LocalDate dataFechamento;
 	private String motivoFechamento;
-	
+
 	private Cliente cliente;
 
 	public Conta(String nomeBanco, Integer codigoIdentificadorBanco, Integer numeroConta, Integer numeroAgencia,
@@ -27,6 +26,10 @@ public abstract class Conta {
 		this.saldo = saldo;
 		this.dataAbertura = dataAbertura;
 		this.cliente = cliente;
+	}
+
+	public Conta() {
+
 	}
 
 	public String getNomeBanco() {
@@ -107,9 +110,8 @@ public abstract class Conta {
 			System.out.println("Você está tentando sacar um valor maior que você possui no saldo");
 		}
 	}
-	
 
-	public String toString(){
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(cliente.toString());
 		sb.append("Nome do Banco: " + getNomeBanco() + "\n");
@@ -120,4 +122,7 @@ public abstract class Conta {
 		sb.append("Data de Abertura: " + getDataAbertura() + "\n");
 		return sb.toString();
 	}
+
+	// MÉTODOS DO EXERCÍCIO 3
+
 }
