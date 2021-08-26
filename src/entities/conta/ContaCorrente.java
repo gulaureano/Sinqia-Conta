@@ -10,10 +10,8 @@ public class ContaCorrente extends Conta {
 	static Double tarifasBancarias = 13.9;
 	private Integer qtdMaximaSaque;
 	private Integer qtdMaximaTransferencia;
-	private int qtdSaque = 0;
-	private int qtdTransferencia = 0;
-	private int contadorArray;
-	ContaCorrente[] contaC = new ContaCorrente[7];
+	private int qtdSaque;
+	private int qtdTransferencia;
 
 	public ContaCorrente(String nomeBanco, Integer codigoIdentificadorBanco, Integer numeroConta, Integer numeroAgencia,
 			Double saldo, LocalDate dataAbertura, Cliente cliente, Integer qtdMaximaSaque,
@@ -21,10 +19,6 @@ public class ContaCorrente extends Conta {
 		super(nomeBanco, codigoIdentificadorBanco, numeroConta, numeroAgencia, saldo, dataAbertura, cliente);
 		this.qtdMaximaSaque = qtdMaximaSaque;
 		this.qtdMaximaTransferencia = qtdMaximaTransferencia;
-	}
-
-	public ContaCorrente() {
-		super();
 	}
 
 	public Integer getQtdMaximaTransferencia() {
@@ -43,35 +37,20 @@ public class ContaCorrente extends Conta {
 		this.qtdMaximaSaque = qtdMaximaSaque;
 	}
 
-	// SOBRESCRITA DO MÉTODO SAQUE NA CLASSE CONTA CORRENTE
 	@Override
 	public void saque(double saque) {
-		if (qtdSaque <= getQtdMaximaSaque()) {
-			if ((getSaldo() - saque) >= 0) {
-				this.saldo -= saque;
-				qtdSaque++;
-			} else {
-				System.out.println("Saldo insulficiente");
-			}
+		if (qtdSaque < qtdMaximaSaque) {
+			super.saque(saque);
+			qtdSaque++;
 		} else {
-			System.out.println("Será feito o saque, porém com uma taxa adicional");
-			if ((getSaldo() - saque) >= 0) {
-				this.saldo -= saque - 4.0;
-				qtdSaque++;
-				System.out.println(getSaldo());
-			} else {
-				System.out.println("Saldo insulficiente");
-			}
+			super.saque(saque + 5.0);
+			System.out.println(
+					"Devido a quantidade máxima de saque ter sido excedida, foi descontado um valor de R$5,00");
 		}
 	}
 
-	// SOBRESCRITA DO MÉTODO DEPOSITO NA CLASSE CONTA CORRENTE
 	@Override
-	public void deposito(double deposito) {
-		this.saldo += deposito;
-	}
-
-	public void transferenciaContaCorrente(Conta conta, double valor) {
+	public void transferencia(Conta conta, Double valor) {
 		if (qtdTransferencia >= getQtdMaximaTransferencia()) {
 			System.out.println("Você atingiu a quantidade máxima de saques permitida");
 		} else {
@@ -86,7 +65,7 @@ public class ContaCorrente extends Conta {
 	public void tarifaBancaria() {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		int diaTarifa = 5;
+		int diaTarifa = 26;
 
 		if (cal.get(Calendar.DAY_OF_MONTH) == diaTarifa) {
 			System.out.printf("Seu saldo era de %.2f\n", getSaldo());
@@ -97,33 +76,4 @@ public class ContaCorrente extends Conta {
 		}
 	}
 
-	// ABAIXO OS MÉTODOS PARA O EXERCICIO 3
-
-	public void adicionaArrayContaCorrente(ContaCorrente conta) {
-		if (contadorArray < contaC.length) {
-			contaC[contadorArray] = conta;
-			contadorArray++;
-			System.out.println("Foi implementado a conta passada no array");
-		} else {
-			System.out.println("Seu array está cheio");
-		}
-	}
-
-	public void getPrimeiraContaCorrenteNoArray() {
-		if (contaC[0] != null) {
-			System.out.println(contaC[0]);
-		} else {
-			System.out.println("Seu Array está vázio");
-			;
-		}
-	}
-
-	public void getUltimaContaCorrenteNoArray() {
-		System.out.println(contaC[contadorArray - 1]);
-	}
-
-	public void getTamanhoArrayContaCorrente() {
-		System.out
-				.println("O tamanho do array é: " + contaC.length + " e estão ocupados " + contadorArray + " posições");
-	}
 }

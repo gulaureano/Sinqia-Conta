@@ -28,10 +28,6 @@ public abstract class Conta {
 		this.cliente = cliente;
 	}
 
-	public Conta() {
-
-	}
-
 	public String getNomeBanco() {
 		return nomeBanco;
 	}
@@ -96,18 +92,24 @@ public abstract class Conta {
 		this.cliente = cliente;
 	}
 
-	// MÉTODO ABSTRATO DE SAQUE
-	public abstract void saque(double saque);
+	public void saque(double saque) {
+		if (saque <= this.saldo) {
+			this.saldo -= saque;
+		} else {
+			System.out.println("saldo insulficiente");
+		}
+	}
 
-	// MÉTODO ABSTRATO DE DEPOSITO
-	public abstract void deposito(double deposito);
+	public void deposito(double deposito) {
+		this.saldo += deposito;
+	}
 
 	public void transferencia(Conta conta, Double valor) {
-		if (getSaldo() >= valor) {
+		if (saldo >= valor) {
 			this.saldo -= valor;
 			conta.deposito(valor);
 		} else {
-			System.out.println("Você está tentando sacar um valor maior que você possui no saldo");
+			System.out.println("Você está tentando transferir um valor maior que você possui no saldo");
 		}
 	}
 
@@ -122,7 +124,4 @@ public abstract class Conta {
 		sb.append("Data de Abertura: " + getDataAbertura() + "\n");
 		return sb.toString();
 	}
-
-	// MÉTODOS DO EXERCÍCIO 3
-
 }

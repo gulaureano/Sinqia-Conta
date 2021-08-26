@@ -11,8 +11,6 @@ public class ContaPoupanca extends Conta {
 	private Double valorizacaoMensal;
 	private Integer mesesCarencia;
 	private Integer qtdMaximaTransferencia;
-	private int contadorArray;
-	ContaPoupanca[] contaP = new ContaPoupanca[7];
 
 	Calendar cal = Calendar.getInstance();
 	Calendar cal2 = Calendar.getInstance();
@@ -24,10 +22,6 @@ public class ContaPoupanca extends Conta {
 		this.valorizacaoMensal = valorizacaoMensal;
 		this.mesesCarencia = mesesCarencia;
 		this.qtdMaximaTransferencia = qtdMaximaTransferencia;
-	}
-
-	public ContaPoupanca() {
-		super();
 	}
 
 	public Integer getQtdMaximaTransferencia() {
@@ -60,16 +54,16 @@ public class ContaPoupanca extends Conta {
 		Calendar cal = Calendar.getInstance();
 		double resultado = 0.0;
 		cal.setTime(new Date());
-		int diaValorizacao = 20;
+		int diaValorizacao = 26;
 		int hoje = cal.get(Calendar.DAY_OF_MONTH);
 
 		if (diaValorizacao == hoje) {
-			System.out.printf("Seu saldo é: %.2f\n", getSaldo());
-			resultado = getSaldo() * getValorizacaoMensal();
+			System.out.printf("Seu saldo é: %.2f\n", this.saldo);
+			resultado = this.saldo * getValorizacaoMensal();
 			this.saldo += resultado;
-			System.out.printf("Agora seu saldo devido a valorização é: %.2f\n", getSaldo());
+			System.out.printf("Devido a valorização de %.2f seu saldo agora é de: %.2f\n", this.valorizacaoMensal, this.saldo);
 		} else {
-			System.out.println("Não ocorreu juros no seu saldo");
+			System.out.println("Não ocorreu juros no seu saldo\n");
 		}
 	}
 
@@ -79,52 +73,15 @@ public class ContaPoupanca extends Conta {
 		LocalDate finalCarencia = getDataAbertura().plusMonths(getMesesCarencia());
 
 		if (mesAtual.equals(finalCarencia) || mesAtual.isAfter(finalCarencia)) {
-			if (!((getSaldo() - saque) < 0)) {
-				this.saldo -= saque;
-			} else {
-				System.out.println("Seu saldo é insulficiente para esta operação");
-			}
+			super.saque(saque);
 		} else {
-			System.out.println("O tempo para saque ainda não ultrapassou " + getMesesCarencia() + " mese(s)");
+			super.saque(saque + 5.0);
+			System.out.println("Foi feito o saque, porém com um desconto de R$5,00\n");
 		}
-	}
 
-	@Override
-	public void deposito(double deposito) {
-		this.saldo += deposito;
 	}
 
 	public void transferencia(Conta conta, Double valor) {
 		super.transferencia(conta, valor);
-	}
-
-	// MÉTODOS PARA O EXERCÍCIO 3
-
-	public void adicionaArrayContaPoupança(ContaPoupanca conta) {
-		if (contadorArray < contaP.length) {
-			contaP[contadorArray] = conta;
-			contadorArray++;
-			System.out.println("Foi implementado a conta passada no array\n");
-		} else {
-			System.out.println("Seu Array está cheio\n");
-		}
-	}
-
-	public void getPrimeiraContaPoupancaNoArray() {
-		if (contaP[0] != null) {
-			System.out.println(contaP[0]);
-		} else {
-			System.out.println("Seu Array está vázio");
-			;
-		}
-	}
-
-	public void getUltimaContaPoupancaNoArray() {
-		System.out.println(contaP[contadorArray - 1]);
-	}
-
-	public void getTamanhoArrayContaPoupanca() {
-		System.out
-				.println("O tamanho do array é: " + contaP.length + " e estão ocupados " + contadorArray + " posições");
 	}
 }
