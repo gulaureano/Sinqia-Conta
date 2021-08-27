@@ -57,4 +57,43 @@ public class Cliente {
 		return sb.toString();
 
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((numeroDocumentoCliente == null) ? 0 : numeroDocumentoCliente.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			System.out.println("Os clientes são iguais");
+			return true;
+		}
+		if (obj == null) {
+			System.out.println("Os clientes são diferentes");
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			System.out.println("Os clientes são diferentes");
+			return false;
+		}
+		Cliente other = (Cliente) obj;
+		if (numeroDocumentoCliente == null) {
+			if (other.numeroDocumentoCliente != null) {
+				System.out.println("Os clientes são diferentes");
+				return false;
+			}
+		} else if (!numeroDocumentoCliente.equals(other.numeroDocumentoCliente)) {
+			System.out.println("Os clientes são diferentes");
+			return false;
+		}
+		System.out.println("Os clientes são iguais");
+		return true;
+
+	}
+
+	
 }

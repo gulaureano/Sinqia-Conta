@@ -15,10 +15,13 @@ public class ContaPoupanca extends Conta {
 	Calendar cal = Calendar.getInstance();
 	Calendar cal2 = Calendar.getInstance();
 
-	public ContaPoupanca(String nomeBanco, Integer codigoIdentificadorBanco, Integer numeroConta, Integer numeroAgencia,
-			Double saldo, LocalDate dataAbertura, Cliente cliente, Double valorizacaoMensal, Integer mesesCarencia,
-			Integer qtdMaximaTransferencia) {
-		super(nomeBanco, codigoIdentificadorBanco, numeroConta, numeroAgencia, saldo, dataAbertura, cliente);
+	
+
+	public ContaPoupanca(String nomeBanco, String codigoIdentificadorBanco, String numeroConta, String numeroAgencia,
+			Double saldo, LocalDate dataAbertura, LocalDate dataFechamento, String motivoFechamento, Cliente cliente,
+			Double valorizacaoMensal, Integer mesesCarencia, Integer qtdMaximaTransferencia) {
+		super(nomeBanco, codigoIdentificadorBanco, numeroConta, numeroAgencia, saldo, dataAbertura, dataFechamento,
+				motivoFechamento, cliente);
 		this.valorizacaoMensal = valorizacaoMensal;
 		this.mesesCarencia = mesesCarencia;
 		this.qtdMaximaTransferencia = qtdMaximaTransferencia;
@@ -83,5 +86,42 @@ public class ContaPoupanca extends Conta {
 
 	public void transferencia(Conta conta, Double valor) {
 		super.transferencia(conta, valor);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj){
+			System.out.println("As contas são iguais");
+			return true;
+		}
+		if (obj == null){
+			System.out.println("As contas são diferentes");
+			return false;
+		}
+		if (getClass() != obj.getClass()){
+			System.out.println("As contas são diferentes");
+			return false;
+		}
+		Conta other = (Conta) obj;
+		if (numeroAgencia == null) {
+			if (other.numeroAgencia != null){
+				System.out.println("As contas são diferentes");
+				return false;
+			}
+		} else if (!numeroAgencia.equals(other.numeroAgencia)){
+			System.out.println("As contas são diferentes");
+			return false;
+		}
+		if (numeroConta == null) {
+			if (other.numeroConta != null){
+				System.out.println("As contas são diferentes");
+				return false;
+			}
+		} else if (!numeroConta.equals(other.numeroConta)){
+			System.out.println("As contas são diferentes");
+			return false;
+		}
+		System.out.println("As contas são iguais");
+		return true;
 	}
 }

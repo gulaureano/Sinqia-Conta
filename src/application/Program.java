@@ -21,31 +21,31 @@ public class Program {
 		Cliente cliente3 = new Cliente("José", 1003, 1000.0, TipoCliente.FUNCIONARIO_BANCO);
 		
 		//INSTANCIANDO CONTAS
-		ContaPoupanca contaPoupanca = new ContaPoupanca("Itau", 45, 9090, 9, 1000.0, LocalDate.now(), cliente2, 0.25, 2, 5);
-		ContaCorrente contaCorrente = new ContaCorrente("NuBank", 37, 8080, 7, 1000.0, LocalDate.parse("2018-10-07"), cliente1, 4, 4);
-		ContaEmpresarial contaEmpresarial = new ContaEmpresarial("C6 Bank", 94, 5050, 5, 10000.0, LocalDate.parse("1973-04-10"), cliente3, "Apsen Farmaceutica");
+		ContaPoupanca contaPoupanca = new ContaPoupanca("Itau", "45", "9090", "9", 1000.0, LocalDate.now(), null, null, cliente2, 0.25, 2, 5);
+		ContaCorrente contaCorrente = new ContaCorrente("NuBank", "37", "8080", "7", 1000.0, LocalDate.parse("2018-10-07"), null, null, cliente1, 4, 4);
+		ContaEmpresarial contaEmpresarial = new ContaEmpresarial("C6 Bank", "94", "5050", "5", 10000.0, LocalDate.parse("1973-04-10"), null, null, cliente3, "Apsen Farmaceutica");
 		
 		//USANDO MÉTODOS DA CLASSE CONTA POUPANCA
-//		System.out.println(contaPoupanca);
-//		contaPoupanca.deposito(100.0);
-//		System.out.println(contaPoupanca);
-//		contaPoupanca.saque(100.0);
-//		System.out.println(contaPoupanca);
-//		contaPoupanca.valorizacaoMensal();
-//		System.out.println(contaPoupanca);
+		System.out.println(contaPoupanca);
+		contaPoupanca.deposito(100.0);
+		System.out.println(contaPoupanca);
+		contaPoupanca.saque(100.0);
+		System.out.println(contaPoupanca);
+		contaPoupanca.valorizacaoMensal();
+		System.out.println(contaPoupanca);
 		
 		//USANDO MÉTODOS DA CLASSE CONTA CORRENTE
-//		System.out.println(contaCorrente);
-//		contaCorrente.deposito(100.0);
-//		System.out.println(contaCorrente);
-//		contaCorrente.saque(100.0);
-//		contaCorrente.saque(100.0);
-//		contaCorrente.saque(100.0);
-//		contaCorrente.saque(100.0);
-//		contaCorrente.saque(100.0);
-//		System.out.println(contaCorrente);
-//		contaCorrente.tarifaBancaria();
-//		System.out.println(contaCorrente);
+		System.out.println(contaCorrente);
+		contaCorrente.deposito(100.0);
+		System.out.println(contaCorrente);
+		contaCorrente.saque(100.0);
+		contaCorrente.saque(100.0);
+		contaCorrente.saque(100.0);
+		contaCorrente.saque(100.0);
+		contaCorrente.saque(100.0);
+		System.out.println(contaCorrente);
+		contaCorrente.tarifaBancaria();
+		System.out.println(contaCorrente);
 		
 		//USANDO MÉTODOS DA CLASSE CONTA EMPRESARIAL
 		contaEmpresarial.deposito(5000.0);
