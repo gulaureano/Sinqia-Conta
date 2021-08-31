@@ -26,6 +26,7 @@ public class Program {
 		ContaEmpresarial contaEmpresarial = new ContaEmpresarial("C6 Bank", "94", "5050", "5", 10000.0, LocalDate.parse("1973-04-10"), null, null, cliente3, "Apsen Farmaceutica");
 		
 		//USANDO MÉTODOS DA CLASSE CONTA POUPANCA
+		System.out.println("------------------------CONTA POUPANÇA--------------------------");
 		System.out.println(contaPoupanca);
 		contaPoupanca.deposito(100.0);
 		System.out.println(contaPoupanca);
@@ -35,6 +36,7 @@ public class Program {
 		System.out.println(contaPoupanca);
 		
 		//USANDO MÉTODOS DA CLASSE CONTA CORRENTE
+		System.out.println("------------------------CONTA CORRENTE--------------------------");
 		System.out.println(contaCorrente);
 		contaCorrente.deposito(100.0);
 		System.out.println(contaCorrente);
@@ -48,6 +50,7 @@ public class Program {
 		System.out.println(contaCorrente);
 		
 		//USANDO MÉTODOS DA CLASSE CONTA EMPRESARIAL
+		System.out.println("------------------------CONTA EMPRESARIAL--------------------------");
 		contaEmpresarial.deposito(5000.0);
 		System.out.println(contaEmpresarial);
 		contaEmpresarial.saque(5000.0);

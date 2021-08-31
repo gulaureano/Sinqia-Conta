@@ -64,50 +64,52 @@ public class ProgramE3 {
 		
 		
 		System.out.println("---------------CONTA POUPANÇA------------------------");
-		adicionarArrayContaPoupanca(arrayCP, contaPoupancaCassilas);
-		adicionarArrayContaPoupanca(arrayCP, contaPoupancaRogerioCeni);
-		adicionarArrayContaPoupanca(arrayCP, contaPoupancaWeverton);
-		adicionarArrayContaPoupanca(arrayCP, contaPoupancaBuffon);
-		adicionarArrayContaPoupanca(arrayCP, contaPoupancaMarcos);
-		adicionarArrayContaPoupanca(arrayCP, contaPoupancaDida);
-		adicionarArrayContaPoupanca(arrayCP, contaPoupancaTiagoVolpi);
-		adicionarArrayContaPoupanca(arrayCP, contaPoupancaDida);
-		primeiroArrayContaPoupanca(arrayCP);
-		ultimoArrayContaPoupanca(arrayCP);
-		tamanhoDoArrayContaPoupanca(arrayCP);
+		adicionarArrayContaPoupanca(contaPoupancaCassilas);
+		adicionarArrayContaPoupanca(contaPoupancaRogerioCeni);
+		adicionarArrayContaPoupanca(contaPoupancaWeverton);
+		adicionarArrayContaPoupanca(contaPoupancaBuffon);
+		adicionarArrayContaPoupanca(contaPoupancaMarcos);
+		adicionarArrayContaPoupanca(contaPoupancaDida);
+		adicionarArrayContaPoupanca(contaPoupancaTiagoVolpi);
+		adicionarArrayContaPoupanca(contaPoupancaDida);
+		primeiroArrayContaPoupanca();
+		ultimoArrayContaPoupanca();
+		tamanhoDoArrayContaPoupanca();
 		
 		System.out.println("---------------CONTA CORRENTE------------------------");
-		adicionarArrayContaCorrente(arrayCC, contaCorrenteBuffon);
-		adicionarArrayContaCorrente(arrayCC, contaCorrenteMarcos);
-		adicionarArrayContaCorrente(arrayCC, contaCorrenteTiagoVolpi);
-		adicionarArrayContaCorrente(arrayCC, contaCorrenteDida);
-		adicionarArrayContaCorrente(arrayCC, contaCorrenteCassio);
-		adicionarArrayContaCorrente(arrayCC, contaCorrenteCassilas);
-		adicionarArrayContaCorrente(arrayCC, contaCorrenteRogerioCeni);
-		adicionarArrayContaCorrente(arrayCC, contaCorrenteRogerioCeni);
-		primeiroArrayContaCorrente(arrayCC);
-		ultimoArrayContaCorrente(arrayCC);
-		tamanhoDoArrayContaCorrente(arrayCC);
-
+		adicionarArrayContaCorrente(contaCorrenteBuffon);
+		adicionarArrayContaCorrente(contaCorrenteMarcos);
+		adicionarArrayContaCorrente(contaCorrenteTiagoVolpi);
+		adicionarArrayContaCorrente(contaCorrenteDida);
+		adicionarArrayContaCorrente(contaCorrenteCassio);
+		adicionarArrayContaCorrente(contaCorrenteCassilas);
+		adicionarArrayContaCorrente(contaCorrenteRogerioCeni);
+		adicionarArrayContaCorrente(contaCorrenteRogerioCeni);
+		primeiroArrayContaCorrente();
+		ultimoArrayContaCorrente();
+		tamanhoDoArrayContaCorrente();
+		
 		System.out.println("---------------CONTA EMPRESARIAL------------------------");
-		adicionarArrayContaEmpresarial(arrayCE, contaEmpresarialDida);
-		adicionarArrayContaEmpresarial(arrayCE, contaEmpresarialCassio);
-		adicionarArrayContaEmpresarial(arrayCE, contaEmpresarialCassilas);
-		adicionarArrayContaEmpresarial(arrayCE, contaEmpresarialRogerioCeni);
-		adicionarArrayContaEmpresarial(arrayCE, contaEmpresarialWeverton);
-		adicionarArrayContaEmpresarial(arrayCE, contaEmpresarialBuffon);
-		adicionarArrayContaEmpresarial(arrayCE, contaEmpresarialDida);
-		primeiroArrayContaEmpresarial(arrayCE);
-		ultimoArrayContaEmpresarial(arrayCE);
-		tamanhoDoArrayContaEmpresarial(arrayCE);
+		adicionarArrayContaEmpresarial(contaEmpresarialDida);
+		adicionarArrayContaEmpresarial(contaEmpresarialCassio);
+		adicionarArrayContaEmpresarial(contaEmpresarialCassilas);
+		adicionarArrayContaEmpresarial(contaEmpresarialRogerioCeni);
+		adicionarArrayContaEmpresarial(contaEmpresarialWeverton);
+		adicionarArrayContaEmpresarial(contaEmpresarialBuffon);
+		adicionarArrayContaEmpresarial(contaEmpresarialDida);
+		primeiroArrayContaEmpresarial();
+		ultimoArrayContaEmpresarial();
+		tamanhoDoArrayContaEmpresarial();
 	}
 	
 	public static ContaPoupanca[] arrayCP = new ContaPoupanca[7];
 	public static ContaCorrente[] arrayCC = new ContaCorrente[7];
 	public static ContaEmpresarial[] arrayCE = new ContaEmpresarial[6];
 	
+	
+	
 	//---------------------------MÉTODOS DA CONTA POUPANCA--------------------------------------------
-	public static void adicionarArrayContaPoupanca(ContaPoupanca[] arrayCP, ContaPoupanca conta) {
+	public static void adicionarArrayContaPoupanca(ContaPoupanca conta) {
 		if (arrayCP[arrayCP.length - 1] == null){
 			int contador = 0;
 			while (arrayCP[contador] != null){
@@ -121,7 +123,7 @@ public class ProgramE3 {
 		}
 	}
 	
-	public static void primeiroArrayContaPoupanca(ContaPoupanca[] arrayCP){
+	public static void primeiroArrayContaPoupanca(){
 		if (arrayCP[0] != null){
 			System.out.println(arrayCP[0]);
 		}
@@ -130,7 +132,7 @@ public class ProgramE3 {
 		}
 	}
 	
-	public static void ultimoArrayContaPoupanca(ContaPoupanca[] arrayCP){
+	public static void ultimoArrayContaPoupanca(){
 		ContaPoupanca contaCP = null;
 		if (arrayCP[0] != null){
 			for (int i = 0; i < arrayCP.length; i++){
@@ -146,7 +148,7 @@ public class ProgramE3 {
 		}
 	}
 	
-	public static void tamanhoDoArrayContaPoupanca(ContaPoupanca[] arrayCP){
+	public static void tamanhoDoArrayContaPoupanca(){
 		int contador = 0;
 		for (int i=0; i < arrayCP.length; i++){
 			if (arrayCP[i] != null){
@@ -158,7 +160,7 @@ public class ProgramE3 {
 	
 	//-----------------------------------MÉTODOS DA CONTA CORRENTE-------------------------------------------
 	
-	public static void adicionarArrayContaCorrente(ContaCorrente[] arrayCC, ContaCorrente conta) {
+	public static void adicionarArrayContaCorrente(ContaCorrente conta) {
 		if (arrayCC[arrayCC.length - 1] == null){
 			int contador = 0;
 			while (arrayCC[contador] != null){
@@ -172,7 +174,7 @@ public class ProgramE3 {
 		}
 	}
 	
-	public static void primeiroArrayContaCorrente(ContaCorrente[] arrayCC){
+	public static void primeiroArrayContaCorrente(){
 		if (arrayCC[0] != null){
 			System.out.println(arrayCC[0]);
 		}
@@ -181,7 +183,7 @@ public class ProgramE3 {
 		}
 	}
 	
-	public static void ultimoArrayContaCorrente(ContaCorrente[] arrayCC){
+	public static void ultimoArrayContaCorrente(){
 		ContaCorrente contaCC = null;
 		if (arrayCC[0] != null){
 			for (int i = 0; i < arrayCC.length; i++){
@@ -197,7 +199,7 @@ public class ProgramE3 {
 		}
 	}
 	
-	public static void tamanhoDoArrayContaCorrente(ContaCorrente[] arrayCC){
+	public static void tamanhoDoArrayContaCorrente(){
 		int contador = 0;
 		for (int i=0; i < arrayCC.length; i++){
 			if (arrayCC[i] != null){
@@ -209,7 +211,7 @@ public class ProgramE3 {
 	
 	//------------------------------------MÉTODOS DA CONTA EMPRESARIAL-----------------------------------
 	
-	public static void adicionarArrayContaEmpresarial(ContaEmpresarial[] arrayCE, ContaEmpresarial conta) {
+	public static void adicionarArrayContaEmpresarial(ContaEmpresarial conta) {
 		if (arrayCE[arrayCE.length - 1] == null){
 			int contador = 0;
 			while (arrayCE[contador] != null){
@@ -223,7 +225,7 @@ public class ProgramE3 {
 		}
 	}
 	
-	public static void primeiroArrayContaEmpresarial(ContaEmpresarial[] arrayCE){
+	public static void primeiroArrayContaEmpresarial(){
 		if (arrayCE[0] != null){
 			System.out.println(arrayCE[0]);
 		}
@@ -232,7 +234,7 @@ public class ProgramE3 {
 		}
 	}
 	
-	public static void ultimoArrayContaEmpresarial(ContaEmpresarial[] arrayCE){
+	public static void ultimoArrayContaEmpresarial(){
 		ContaEmpresarial contaCE = null;
 		if (arrayCE[0] != null){
 			for (int i = 0; i < arrayCE.length; i++){
@@ -248,7 +250,7 @@ public class ProgramE3 {
 		}
 	}
 	
-	public static void tamanhoDoArrayContaEmpresarial(ContaEmpresarial[] arrayCE){
+	public static void tamanhoDoArrayContaEmpresarial(){
 		int contador = 0;
 		for (int i=0; i < arrayCE.length; i++){
 			if (arrayCE[i] != null){
