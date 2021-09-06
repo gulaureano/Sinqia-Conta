@@ -80,42 +80,5 @@ public class ContaCorrente extends Conta {
 			System.out.println("Ainda não é o dia para cobrar sua tarifa");
 		}
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj){
-			System.out.println("As contas são iguais");
-			return true;
-		}
-		if (obj == null){
-			System.out.println("As contas são diferentes");
-			return false;
-		}
-		if (getClass() != obj.getClass()){
-			System.out.println("As contas são diferentes");
-			return false;
-		}
-		Conta other = (Conta) obj;
-		if (numeroAgencia == null) {
-			if (other.numeroAgencia != null){
-				System.out.println("As contas são diferentes");
-				return false;
-			}
-		} else if (!numeroAgencia.equals(other.numeroAgencia)){
-			System.out.println("As contas são diferentes");
-			return false;
-		}
-		if (numeroConta == null) {
-			if (other.numeroConta != null){
-				System.out.println("As contas são diferentes");
-				return false;
-			}
-		} else if (!numeroConta.equals(other.numeroConta)){
-			System.out.println("As contas são diferentes");
-			return false;
-		}
-		System.out.println("As contas são iguais");
-		return true;
-	}
 
 }
