@@ -3,11 +3,17 @@ package entities.cliente;
 import entities.enums.TipoCliente;
 
 public class Cliente {
+	
+	/*AQUI TEMOS A CLASSE CLIENTE, RESPONSÁVEL POR TER TUDO O QUE UM CLIENTE PRECISA NA 
+	 * PROPOSTA DO EXERCÍCIO*/
 
 	private String nomeCliente;
 	private Integer numeroDocumentoCliente;
 	private Double scoreCliente;
 	private TipoCliente tipoCliente;
+	
+	/*AQUI EM CIMA TEMOS OS ATRIBUTOS DA CLASSE, SÃO VARIAVEIS QUE REPRESENTAM O QUE O CLIENTE TEM E O QUE É, 
+	 * POR EXEMPLO TODDO CLIETE TEM UM NOME, Nº DE DOCUMENTO, SCORE E ELE É UM TIPO DE CLIENTE*/
 
 	public Cliente(String nomeCliente, Integer numeroDocumentoCliente, Double scoreCliente, TipoCliente tipoCliente) {
 		this.nomeCliente = nomeCliente;
@@ -69,31 +75,26 @@ public class Cliente {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
-			System.out.println("Os clientes são iguais");
 			return true;
 		}
 		if (obj == null) {
-			System.out.println("Os clientes são diferentes");
 			return false;
 		}
 		if (getClass() != obj.getClass()) {
-			System.out.println("Os clientes são diferentes");
 			return false;
 		}
 		Cliente other = (Cliente) obj;
 		if (numeroDocumentoCliente == null) {
 			if (other.numeroDocumentoCliente != null) {
-				System.out.println("Os clientes são diferentes");
 				return false;
 			}
 		} else if (!numeroDocumentoCliente.equals(other.numeroDocumentoCliente)) {
-			System.out.println("Os clientes são diferentes");
 			return false;
 		}
-		System.out.println("Os clientes são iguais");
 		return true;
-
 	}
+	
+	
 
 	
 }

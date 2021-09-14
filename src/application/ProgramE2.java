@@ -10,9 +10,12 @@ import entities.enums.TipoCliente;
 public class ProgramE2 {
 
 	public static void main(String[] args) {
+		//AQUI TEMOS O SEGUNDO EXERCICIO QUE MOSTRA A PEQUENA DIFERENÇA ENTRE USAR DOIS METODOS QUE TEORICAMENTE
+//		FAZEM A MESMA COISA
 		
 		String a = "Hello";
 		String b = new String("Hello");
+		
 		
 		inteirosIguais(1, 2);
 		inteirosIguais(2, 2);
@@ -37,8 +40,11 @@ public class ProgramE2 {
 		cliente1.equals(cliente2);
 		cliente2.equals(cliente3);
 		
-		contaCorrente.equals(contaPoupanca);
-		contaCorrente.equals(contaCorrente1);
+		System.out.println(contaCorrente.equals(contaPoupanca));
+		System.out.println(contaCorrente.equals(contaCorrente1));
+		
+		/*AQUI COMO VEMOS, VERIFICAMOS CLIENTES E CONTAS EXATAMENTE IGUAIS E CLIENTES E CONTAS DIFERENTES
+		 * PORÉM, EU COLOQUEI QUE PARA SER IGUAL, VAI IMPORTAR APEENAS A AGENCIA E CONTA, IGNORANDO O RESTO*/
 	}
 	
 	public static void inteirosIguais(int a, int b) {

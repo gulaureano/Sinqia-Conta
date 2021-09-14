@@ -12,6 +12,11 @@ import entities.enums.TipoCliente;
 public class ProgramE4 {
 
 	public static void main(String[] args) {
+		/*AQUI NESTE EXERCÍCIO É A MESMA COISA QUE O ANTERIOR, POREM ESSE "ARRAY", ESSE ESPAÇO, ACEITA QUALQUER
+		 * TIPO DE CONTA, SEJA ELA CORRENTE, POUPANÇA E EMPRESARIAL, PORÉM CONTINUA COM OS MESMO PROBLEMAS
+		 * APRESENTADOS ANTERIORMENTE*/
+		
+		
 		
 		Cliente clienteCassilas = new Cliente("Casillas", 1001, 778.0, TipoCliente.PESSOA_FISICA);
 		Cliente clienteBuffon = new Cliente("Buffon", 1002, 550.0, TipoCliente.PESSOA_FISICA);

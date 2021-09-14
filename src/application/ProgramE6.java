@@ -1,9 +1,8 @@
 package application;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import entities.cliente.Cliente;
 import entities.conta.Conta;
@@ -12,21 +11,18 @@ import entities.conta.ContaEmpresarial;
 import entities.conta.ContaPoupanca;
 import entities.enums.TipoCliente;
 
-public class ProgramE5 {
-	
-	/*NO EXERCICIO 5 CONTINUAMOS A TRABALHAR COM O "ARRAY", POREM, ESSE ARRAY JÁ RESOLVE ALGUNS PROBLEMAS
-	 * CITADO NO ANTERIOR, QUE É A QUESTÃO DE TAMANHO FIXO, AQUI PODEMOS IR ACRESCENTANDO, CADA ELEMENTO
-	 * TEM SEU PROPRIO INDICE, OU SEJA, QUANDO EU ADICIONAR A PRIMEIRA VEZ ELE AUTOMATICAMENTE VAI SER O
-	 * PRIMEIRO, DEPOIS O SEGUNDO, E ASSIM POR DIANTE, POREM, ESSA LISTA ACEITA VALORES REPETIDOS, E 
-	 * É EXATAMENTE O QUE O EXERCICIO PEDE PARA GENTE TER ATENÇAO, EM COLOCAR ELEMENTOS REPETIDDOS E RETIRÁ-LOS
-	 * DEPOIS*/
+public class ProgramE6 {
 
 	public static void main(String[] args) {
 		
-		List<Conta> listaConta = new ArrayList<>();
-		List<Conta> listaContaDuplicadas = new ArrayList<>();
-		List<Conta> listaContaUnico = new ArrayList<>();
+		/*ESTE EXERCICIO É JUSTAMENTE PARA CORRIGIR O PROBLEMA QUE TIVEMOS COM O ARRAY ANTERIOR
+		 * QUE É PARA NÃO ACEITAR ELEMENTOS REPETIDOS NA MINHA LISTA, CASO EU TENTE INSERIR
+		 * ELE SIMPLESMENTE VAI IGNORAR E NÃO VAI COLOCAR*/
 		
+		Set<Conta> setSingleAccounts = new HashSet<>();
+		Set<Conta> setGeneralAccounts = new HashSet<>();
+		
+//		10 CLIENTES
 		Cliente clienteAlberto = new Cliente("Alberto", 1001, 778.0, TipoCliente.PESSOA_FISICA);
 		Cliente clienteFernando = new Cliente("Fernando", 1002, 550.0, TipoCliente.PESSOA_FISICA);
 		Cliente clienteLuiz = new Cliente("Luiz", 123456789, 780.0, TipoCliente.PESSOA_JURIDICA);
@@ -37,8 +33,9 @@ public class ProgramE5 {
 		Cliente clienteAndreia = new Cliente("Andreia", 5649877, 780.0, TipoCliente.PESSOA_JURIDICA);
 		Cliente clienteFabio = new Cliente("Fabio", 467589, 790.0, TipoCliente.SERVIDOR_PUBLICO);
 		Cliente clienteHoracio = new Cliente("Horacio", 56473, 790.0, TipoCliente.SERVIDOR_PUBLICO);
-
-		// INSTANCIADOS TRÊS TIPOS DE CONTA E EM CADA UMA COLOCANDO UM CLIENTE
+		
+//		20 CONTAS ÚNICAS
+		
 		ContaPoupanca contaPoupanca1 = new ContaPoupanca("Itau", "45", "01", "1", 1000.0,
 				LocalDate.parse("2003-09-06"), null, null, clienteAlberto, 0.25, 3, 5);
 		ContaCorrente contaCorrente1 = new ContaCorrente("Itau", "89", "02", "1", 2000.0,
@@ -80,7 +77,7 @@ public class ProgramE5 {
 		ContaCorrente contaCorrente7 = new ContaCorrente("C6 Bank", "23", "9803", "4", 17000.0,
 				LocalDate.parse("1992-07-04"), null, null, clienteHoracio, 5, 5);
 		
-		//---------------------------MAIS 10 CONTAS DUPLICADAS------------------------------
+//		10 CONTAS DUPLICADAS
 		ContaPoupanca contaPoupancaIgual1 = new ContaPoupanca("Itau", "45", "01", "1", 1000.0,
 				LocalDate.parse("2003-09-06"), null, null, clienteAlberto, 0.25, 3, 5);
 		ContaCorrente contaCorrenteIgual1 = new ContaCorrente("Itau", "89", "02", "1", 2000.0,
@@ -102,75 +99,44 @@ public class ProgramE5 {
 		ContaPoupanca contaPoupancaIgual4 = new ContaPoupanca("C6 Bank", "23", "8", "1", 3560.0,
 				LocalDate.parse("1997-10-05"), null, null, clienteHoracio, 0.45, 3, 4);
 		
+		//VINTE PRIMEIRAS CONTAS
+		setSingleAccounts.add(contaPoupanca1);
+		setSingleAccounts.add(contaCorrente1);
+		setSingleAccounts.add(contaEmpresarial1);
+		setSingleAccounts.add(contaPoupanca2);
+		setSingleAccounts.add(contaCorrente2);
+		setSingleAccounts.add(contaEmpresarial2);
+		setSingleAccounts.add(contaPoupanca3);
+		setSingleAccounts.add(contaCorrente3);
+		setSingleAccounts.add(contaEmpresarial3);
+		setSingleAccounts.add(contaPoupanca4);
+		setSingleAccounts.add(contaCorrente4);
+		setSingleAccounts.add(contaEmpresarial4);
+		setSingleAccounts.add(contaPoupanca5);
+		setSingleAccounts.add(contaCorrente5);
+		setSingleAccounts.add(contaEmpresarial5);
+		setSingleAccounts.add(contaPoupanca6);
+		setSingleAccounts.add(contaCorrente6);
+		setSingleAccounts.add(contaEmpresarial6);
+		setSingleAccounts.add(contaPoupanca7);
+		setSingleAccounts.add(contaCorrente7);
+		
+		//ADICIONANDO AS 10 DUPLICADAS EM OUTRO SET
+		setGeneralAccounts.add(contaPoupancaIgual1);
+		setGeneralAccounts.add(contaCorrenteIgual1);
+		setGeneralAccounts.add(contaEmpresarialIgual1);
+		setGeneralAccounts.add(contaPoupancaIgual2);
+		setGeneralAccounts.add(contaCorrenteIgual2);
+		setGeneralAccounts.add(contaEmpresarialIgual2);
+		setGeneralAccounts.add(contaPoupancaIgual3);
+		setGeneralAccounts.add(contaCorrenteIgual3);
+		setGeneralAccounts.add(contaEmpresarialIgual3);
+		setGeneralAccounts.add(contaPoupancaIgual4);
 		
 		
-		listaConta.add(contaPoupanca1);
-		listaConta.add(contaCorrente1);
-		listaConta.add(contaEmpresarial1);
-		listaConta.add(contaPoupanca2);
-		listaConta.add(contaCorrente2);
-		listaConta.add(contaEmpresarial2);
-		listaConta.add(contaPoupanca3);
-		listaConta.add(contaCorrente3);
-		listaConta.add(contaEmpresarial3);
-		listaConta.add(contaPoupanca4);
-		listaConta.add(contaCorrente4);
-		listaConta.add(contaEmpresarial4);
-		listaConta.add(contaPoupanca5);
-		listaConta.add(contaCorrente5);
-		listaConta.add(contaEmpresarial5);
-		listaConta.add(contaPoupanca6);
-		listaConta.add(contaCorrente6);
-		listaConta.add(contaEmpresarial6);
-		listaConta.add(contaPoupanca7);
-		listaConta.add(contaCorrente7);
-		listaConta.add(contaPoupancaIgual1);
-		listaConta.add(contaCorrenteIgual1);
-		listaConta.add(contaEmpresarialIgual1);
-		listaConta.add(contaPoupancaIgual2);
-		listaConta.add(contaCorrenteIgual2);
-		listaConta.add(contaEmpresarialIgual2);
-		listaConta.add(contaPoupancaIgual3);
-		listaConta.add(contaCorrenteIgual3);
-		listaConta.add(contaEmpresarialIgual3);
-		listaConta.add(contaPoupancaIgual4);
 		
-//		MODO QUE FIZ, ORIGINAL
-//		for (int i=0; i < listaConta.size(); i++) {
-//			for (int j=i+1; j< listaConta.size(); j++) {
-//				if (listaConta.get(i).equals(listaConta.get(j))) {
-//					listaContaDuplicadas.add(listaConta.get(j));
-//					listaConta.remove(j);
-//				}
-//			}
-//		}
-		
-//		UM MELHOR MODO DE FAZER A MESMA COISA, COM MENOS PROCESSAMENTO
-		for(Conta conta : listaConta) {
-			if(listaContaUnico.contains(conta)) {
-				listaContaDuplicadas.add(conta);
-			} else {
-				listaContaUnico.add(conta);
-			}
-		}
-		
-		System.out.println(listaContaDuplicadas.size());
-		System.out.println(listaConta.size());
-		
-		Collections.sort(listaConta);
-		for (Conta list : listaContaDuplicadas) {
-			System.out.println("Agencia: " + list.getNumeroAgencia());
-			System.out.println("Conta: " + list.getNumeroConta());
-			System.out.println();
-		}
-		
-		System.out.println("----------TODAS AS CONTAS---------------------");
-		
-		for (Conta list : listaConta) {
-			System.out.println("Agencia: " + list.getNumeroAgencia());
-			System.out.println("Conta: " + list.getNumeroConta());
-			System.out.println();
-		}
+		System.out.println("Number of tries: " + (setSingleAccounts.size() + setGeneralAccounts.size()));
+		System.out.println("Number of accounts placed: " + setSingleAccounts.size());
 
 	}
 
