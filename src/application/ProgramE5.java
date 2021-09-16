@@ -145,6 +145,7 @@ public class ProgramE5 {
 //			}
 //		}
 		
+		
 //		UM MELHOR MODO DE FAZER A MESMA COISA, COM MENOS PROCESSAMENTO
 		for(Conta conta : listaConta) {
 			if(listaContaUnico.contains(conta)) {

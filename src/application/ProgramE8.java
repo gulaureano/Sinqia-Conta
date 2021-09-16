@@ -12,6 +12,12 @@ import entities.enums.TipoCliente;
 public class ProgramE8 {
 
 	public static void main(String[] args) {
+		//String e StringBuilder, String é um tipo de classe IMUTÁVEL, ou seja, uma vez declarada não pode
+		//ser alterada, e a principal diferença entre ela e o StringBuilder, é no fato da concatenação,
+		//quando você concatena algo com a String, ela não adiciona esse valor nela existente
+		//ela cria outro objeto agregando o valor já existente, ou seja, além do objeto original já existente
+		//ela cria outro objeto com o que você passou, já o StringBuilder ele adiciona de fato no objeto o que 
+		//você passou na concatenação
 		
 		Cliente cliente1 = new Cliente("Gustavo", 1001, 780.0, TipoCliente.PESSOA_FISICA);
 		Cliente cliente2 = new Cliente("Geovane", 1002, 894.0, TipoCliente.SERVIDOR_PUBLICO);
@@ -27,7 +33,7 @@ public class ProgramE8 {
 	
 	public static String StringActiveAccount(Conta conta){
 		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d 'de' MMMM 'de' yyyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d 'de' MMMM 'de' y");
 		String answer = null;
 		
 			answer = "A/O "
